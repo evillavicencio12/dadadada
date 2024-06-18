@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejador de eventos</title>
+    <style>
+        body {
+            height: 100vh;
+            background-color: beige;
+            overflow: hidden;
+            text-align: center;
+        }
+        .punto {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgb(255, 145, 0);
+            position: absolute;
+            pointer-events: none; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Eventos de toques</h1>
+    <h2>Manten presionado y arraste el click para comenzar a dibujar</h2>
+    <script>
+        function crearPunto(coordenadaX, coordenadaY) {
+            let punto = document.createElement("div");
+            punto.className = "punto";
+            punto.style.left = (coordenadaX - 8) + "px"; 
+            punto.style.top = (coordenadaY - 8) + "px"; 
+            document.body.appendChild(punto); 
+        }
+        window.addEventListener("mousedown", function(evento) {
+            crearPunto(evento.clientX, evento.clientY);
+        });
+        window.addEventListener("mousemove", function(evento) {
+            if (evento.buttons === 1) { 
+                crearPunto(evento.clientX, evento.clientY);
+            }
+        });        
+        window.addEventListener("touchstart", function(evento) {
+            crearPunto(evento.touches[0].clientX, evento.touches[0].clientY);
+        });
+        window.addEventListener("touchmove", function(evento) {
+            crearPunto(evento.touches[0].clientX, evento.touches[0].clientY);
+        });        
+        window.addEventListener("touchstart", function(evento) {
+            evento.preventDefault();
+        });
+        window.addEventListener("touchmove", function(evento) {
+            evento.preventDefault();
+        });
+    </script> 
+</body>
+</html>

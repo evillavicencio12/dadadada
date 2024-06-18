@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propagacion</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Propagacion</h1>
+    <p>Un párrafo con un <button>botón</button>.</p>
+    <script>
+    let parrafo = document.querySelector("p");
+    let boton = document.querySelector("button");
+    parrafo.addEventListener("mousedown", () => {
+    console.log("Manejador del párrafo.");
+    alert("Manejador del párrafo.");
+    });
+    boton.addEventListener("mousedown", evento => {
+    console.log("Manejador del botón.");
+    alert("Manejador del botón.");
+    if (evento.button == 2) evento.stopPropagation();
+    });  
+    </script>
+</body>
+</html>

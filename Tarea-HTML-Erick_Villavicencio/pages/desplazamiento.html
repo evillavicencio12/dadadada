@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejador de eventos</title>
+    <style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    }
+    #progreso {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background-color: #db7134;
+    z-index: 1000; 
+    transition: width 0.5s ease-out;
+    }
+    </style>
+</head>
+<body>
+    <div id="progreso"></div>
+    <div id="contenido">
+    <h1>Eventos de desplazamiento</h1>
+    <h2>La barra se actualizará cuando suba nuevamente</h2>
+    </div>
+    <script>
+        document.body.appendChild(document.createTextNode(
+        " Desarrollo web ".repeat(1000)));
+        document.addEventListener("DOMContentLoaded", function() {
+            let barra = document.getElementById('progreso');
+            let contenido = document.getElementById('contenido');
+            let maxScroll = contenido.clientHeight - window.innerHeight;
+            let letScrollPosition = 0
+
+            window.addEventListener('scroll', actualizarProgreso);
+
+            function actualizarProgreso() {
+                let porcentaje = (window.pageYOffset / maxScroll) * 100;
+                barra.style.width = porcentaje + '%';
+            }
+        });
+    </script>
+</body>
+</html>

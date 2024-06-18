@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejador de eventos</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <h1>Eventos de teclado</h1>
+    <p>La pagina cambia de color presionado la tecla k,p,r,h</p>
+    <script >
+    window.addEventListener("keydown", evento => {
+    if (evento.key == "k") {
+    document.body.style.background = "violet";
+    }
+    });
+    window.addEventListener("keydown", evento => {
+    if (evento.key == "p") {
+    document.body.style.background = "green";
+    }
+    });
+    window.addEventListener("keydown", evento => {
+    if (evento.key == "r") {
+    document.body.style.background = "black";
+    }
+    });
+    window.addEventListener("keydown", evento => {
+    if (evento.key == "h") {
+    document.body.style.background = "red";
+    }
+    });
+    window.addEventListener("keyup", evento => {
+    if (evento.key == "k") {
+    document.body.style.background = "";
+    }
+    });
+    window.addEventListener("keyup", evento => {
+    if (evento.key == "p") {
+    document.body.style.background = "";
+    }
+    });
+    window.addEventListener("keyup", evento => {
+    if (evento.key == "r") {
+    document.body.style.background = "";
+    }
+    });
+    window.addEventListener("keyup", evento => {
+    if (evento.key == "h") {
+    document.body.style.background = "";
+    }
+    });
+    window.addEventListener("keydown", evento => {
+    if (evento.key == " " && evento.ctrlKey) {
+    console.log("¡Continuando!");
+    alert("Has presionado la tecla CTRL con la tecla espaciadora");
+    }
+    });
+    </script>
+</body>
+</html>

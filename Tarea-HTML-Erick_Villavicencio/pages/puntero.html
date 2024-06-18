@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejador de eventos</title>
+    <style>
+        body {
+        text-align: center;
+        height: 200px;
+        background: beige;
+        }
+        .punto {
+        height: 16px; width: 16px;
+        border-radius: 8px;
+        background: rgb(51, 255, 0);
+        position: absolute;
+        }
+        .barra{
+            background: rgb(247, 0, 255);
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Puntero y movimiento del mouse</h1>
+    <h2>Cada que presiona en la pantalla se pinta un circulo y puedes arrastrar la barra</h2>
+    <div class="barra"></div>
+    <script>
+        let ultimoX; 
+        let barra = document.querySelector(".barra");
+        
+        barra.addEventListener("mousedown", evento => {
+            if (evento.button == 0) {
+                ultimoX = evento.clientX;
+                window.addEventListener("mousemove", movido);
+                evento.preventDefault(); 
+            }
+        });
+        
+        function movido(evento) {
+            if (evento.buttons == 0) {
+                window.removeEventListener("mousemove", movido);
+            } else {
+                let distancia = evento.clientX - ultimoX;
+                let nuevaAnchura = Math.max(10, barra.offsetWidth + distancia);
+                barra.style.width = nuevaAnchura + "px";
+                ultimoX = evento.clientX;
+            }
+        }
+    </script>
+    <script>
+        window.addEventListener("click", evento => {
+        let punto = document.createElement("div");
+        punto.className = "punto";
+        punto.style.left = (evento.pageX - 8) + "px";
+        punto.style.top = (evento.pageY - 8) + "px";
+        document.body.appendChild(punto);
+    });
+    </script>
+</body>
+</html>
